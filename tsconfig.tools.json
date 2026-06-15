@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"composite": true, // <- Añade esta línea obligatoria para las referencias
+		"target": "ESNext",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"types": ["node"]
+	},
+	"include": ["drizzle.config.ts"]
+}

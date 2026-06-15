@@ -1,5 +1,3 @@
 {
-	"editor.fontSize": 16,
-	"terminal.integrated.fontSize": 14,
-	"color-blocks.behavior.enabled": false
+	"color-blocks.wrapText.enabled": false
 }
