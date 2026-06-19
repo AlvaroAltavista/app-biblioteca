@@ -1,11 +1,5 @@
 import { sqliteTable, integer, text, check } from "drizzle-orm/sqlite-core";
-import { defineConfig } from "drizzle-kit";
-
-// Config
-export default defineConfig({
-	dialect: "sqlite",
-	schema: "@/schema/db/schema.ts",
-});
+import { sql } from "drizzle-orm";
 
 // ============================
 // Tablas Maestras
@@ -26,6 +20,7 @@ export const Coleccion = sqliteTable("Coleccion", {
 });
 
 export const Estado = sqliteTable("Estado", {
+	id: integer().primaryKey({ autoIncrement: true }),
 	nombre: text("nombre").notNull().unique(),
 });
 
@@ -50,7 +45,7 @@ export const Libro = sqliteTable("Libro", {
 	idSubgenero: integer("idSubgenero").references(() => SubGenero.id, { onDelete: "restrict" }),
 	idEditorial: text("idEditorial").references(() => Editorial.id, { onDelete: "restrict" }),
 	isbn: text("isbn").notNull().unique(),
-	idColeccion: text("idColeccion").references(() => Coleccion.id, { onDelete: "restrict" }),
+	idColeccion: integer("idColeccion").references(() => Coleccion.id, { onDelete: "restrict" }),
 	coverImgPath: text("coverImgPath"),
 	anyoEscritura: integer("anyoEscritura"),
 	anyoEdicion: integer("anyoEdicion"),
@@ -102,10 +97,80 @@ export const Nota = sqliteTable("Nota", {
 // Tablas intermedias
 // ===============================
 
-export const LibroContacto = sqliteTable("LibroContacto", {
+export const LibroContacto = sqliteTable(
+	"LibroContacto",
+	{
+		id: text("id")
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		idLibro: text("idLibro")
+			.references(() => Libro.id, { onDelete: "cascade" })
+			.notNull(),
+		idContacto: text("idContacto").references(() => Contacto.id),
+		idPropietario: text("idPropietario").references(() => Contacto.id),
+		isDevuelto: integer({ mode: "boolean" }).notNull().default(false),
+		createdAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
+		updatedAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
+	},
+	(table) => ({
+		// Limitación de contacto (prestamos) o propietario (nos prestan)
+		contactoOrPropietario: check(
+			"contacto_or_propietario_check",
+			sql`(${table.idContacto} is not null and ${table.idPropietario} is null) or (${table.idContacto} is null and ${table.idPropietario} is not null)`,
+		),
+	}),
+);
+
+export const LibroAutor = sqliteTable("LibroAutor", {
 	id: text("id")
 		.primaryKey()
 		.$defaultFn(() => crypto.randomUUID()),
-	idLibro: text("idLibro").references(() => Libro.id, { onDelete: "cascade" }),
-	idContacto: text("idContacto").references(() => )
+	idLibro: text("idLibro")
+		.references(() => Libro.id)
+		.notNull(),
+	idAutor: text("idAutor")
+		.references(() => Autor.id)
+		.notNull(),
+});
+
+export const LibroUsuario = sqliteTable(
+	"LibroUsuario",
+	{
+		id: text("id")
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		idLibro: text("idLibro")
+			.references(() => Libro.id)
+			.notNull(),
+		idUsuario: text("idUsuario")
+			.references(() => Usuario.id)
+			.notNull(),
+		idEstado: integer("idEstado")
+			.references(() => Estado.id)
+			.notNull(),
+		valoracion: integer("valoracion"),
+	},
+	(table) => ({
+		rangoValoracion: check("rango_valoracion_check", sql`${table.valoracion} >= 0 and ${table.valoracion} <= 10`),
+	}),
+);
+
+// ===============================
+// Tablas historicos
+// ===============================
+
+export const LibroUsuarioEstadoHistorico = sqliteTable("LibroUsuarioEstadoHistorico", {
+	id: text("id")
+		.primaryKey()
+		.$defaultFn(() => crypto.randomUUID()),
+	idLibro: text("idLibro")
+		.references(() => Libro.id)
+		.notNull(),
+	idUsuario: text("idUsuario")
+		.references(() => Usuario.id)
+		.notNull(),
+	idEstado: integer("idEstado")
+		.references(() => Estado.id)
+		.notNull(),
+	createdAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
 });
