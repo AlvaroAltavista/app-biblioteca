@@ -8,21 +8,32 @@ export const Genero = sqliteTable("Genero", {
 	id: integer().primaryKey({ autoIncrement: true }),
 	nombre: text("nombre").notNull().unique(),
 });
+export type SelectGenero = typeof Genero.$inferSelect;
+export type InsertGenero = typeof Genero.$inferInsert;
 
 export const SubGenero = sqliteTable("SubGenero", {
 	id: integer().primaryKey({ autoIncrement: true }),
 	nombre: text("nombre").notNull().unique(),
+	idGenero: integer("idGenero")
+		.references(() => Genero.id, { onDelete: "cascade" })
+		.notNull(),
 });
+export type SelectSubGenero = typeof SubGenero.$inferSelect;
+export type InsertSubGenero = typeof SubGenero.$inferInsert;
 
 export const Coleccion = sqliteTable("Coleccion", {
 	id: integer().primaryKey({ autoIncrement: true }),
 	nombre: text("nombre").notNull().unique(),
 });
+export type SelectColeccion = typeof Coleccion.$inferSelect;
+export type InsertColeccion = typeof Coleccion.$inferInsert;
 
 export const Estado = sqliteTable("Estado", {
 	id: integer().primaryKey({ autoIncrement: true }),
 	nombre: text("nombre").notNull().unique(),
 });
+export type SelectEstado = typeof Estado.$inferSelect;
+export type InsertEstado = typeof Estado.$inferInsert;
 
 // ============================
 // Entidades
@@ -33,6 +44,9 @@ export const Editorial = sqliteTable("Editorial", {
 		.$defaultFn(() => crypto.randomUUID()),
 	nombre: text("nombre").notNull(),
 });
+
+export type SelectEditorial = typeof Editorial.$inferSelect;
+export type InsertEditorial = typeof Editorial.$inferInsert;
 
 export const Libro = sqliteTable("Libro", {
 	id: text("id")
@@ -53,6 +67,9 @@ export const Libro = sqliteTable("Libro", {
 	updatedAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
 });
 
+export type SelectLibro = typeof Libro.$inferSelect;
+export type InsertLibro = typeof Libro.$inferInsert;
+
 export const Contacto = sqliteTable("Contacto", {
 	id: text("id")
 		.primaryKey()
@@ -60,6 +77,9 @@ export const Contacto = sqliteTable("Contacto", {
 	nombre: text("nombre").notNull().unique(),
 	metodoContacto: text("metodo_contacto").notNull().unique(),
 });
+
+export type SelectContacto = typeof Contacto.$inferSelect;
+export type InsertContacto = typeof Contacto.$inferInsert;
 
 export const Autor = sqliteTable("Autor", {
 	id: text("id")
@@ -69,6 +89,9 @@ export const Autor = sqliteTable("Autor", {
 	apellidos: text("apellidos"),
 });
 
+export type SelectAutor = typeof Autor.$inferSelect;
+export type InsertAutor = typeof Autor.$inferInsert;
+
 export const Usuario = sqliteTable("Usuario", {
 	id: text("id")
 		.primaryKey()
@@ -76,6 +99,9 @@ export const Usuario = sqliteTable("Usuario", {
 	nombre: text("nombre").notNull().unique(),
 	password: text("password").notNull(),
 });
+
+export type SelectUsuario = typeof Usuario.$inferSelect;
+export type InsertUsuario = typeof Usuario.$inferInsert;
 
 export const Nota = sqliteTable("Nota", {
 	id: text("id")
@@ -92,6 +118,9 @@ export const Nota = sqliteTable("Nota", {
 	createdAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
 	updatedAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
 });
+
+export type SelectNota = typeof Nota.$inferSelect;
+export type InsertNota = typeof Nota.$inferInsert;
 
 // ===============================
 // Tablas intermedias
@@ -121,6 +150,9 @@ export const LibroContacto = sqliteTable(
 	}),
 );
 
+export type SelectLibroContacto = typeof LibroContacto.$inferSelect;
+export type InsertLibroContacto = typeof LibroContacto.$inferInsert;
+
 export const LibroAutor = sqliteTable("LibroAutor", {
 	id: text("id")
 		.primaryKey()
@@ -132,6 +164,9 @@ export const LibroAutor = sqliteTable("LibroAutor", {
 		.references(() => Autor.id)
 		.notNull(),
 });
+
+export type SelectLibroAutor = typeof LibroAutor.$inferSelect;
+export type InsertLibroAutor = typeof LibroAutor.$inferInsert;
 
 export const LibroUsuario = sqliteTable(
 	"LibroUsuario",
@@ -155,8 +190,11 @@ export const LibroUsuario = sqliteTable(
 	}),
 );
 
+export type SelectLibroUsuario = typeof LibroUsuario.$inferSelect;
+export type InsertLibroUsuario = typeof LibroUsuario.$inferInsert;
+
 // ===============================
-// Tablas historicos
+// Tablas históricos
 // ===============================
 
 export const LibroUsuarioEstadoHistorico = sqliteTable("LibroUsuarioEstadoHistorico", {
@@ -174,3 +212,6 @@ export const LibroUsuarioEstadoHistorico = sqliteTable("LibroUsuarioEstadoHistor
 		.notNull(),
 	createdAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
 });
+
+export type SelectLibroUsuarioEstadoHistorico = typeof LibroUsuarioEstadoHistorico.$inferSelect;
+export type InsertLibroUsuarioEstadoHistorico = typeof LibroUsuarioEstadoHistorico.$inferInsert;

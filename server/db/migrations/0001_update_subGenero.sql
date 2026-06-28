@@ -1,0 +1,1 @@
+ALTER TABLE `SubGenero` ADD `idGenero` text NOT NULL REFERENCES Genero(id);

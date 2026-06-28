@@ -1,0 +1,865 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "f35ff48c-176f-4e5c-893e-7190bea7e99a",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "Autor": {
+      "name": "Autor",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "apellidos": {
+          "name": "apellidos",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Coleccion": {
+      "name": "Coleccion",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Coleccion_nombre_unique": {
+          "name": "Coleccion_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Contacto": {
+      "name": "Contacto",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "metodo_contacto": {
+          "name": "metodo_contacto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Contacto_nombre_unique": {
+          "name": "Contacto_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        },
+        "Contacto_metodo_contacto_unique": {
+          "name": "Contacto_metodo_contacto_unique",
+          "columns": [
+            "metodo_contacto"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Editorial": {
+      "name": "Editorial",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Estado": {
+      "name": "Estado",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Estado_nombre_unique": {
+          "name": "Estado_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Genero": {
+      "name": "Genero",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Genero_nombre_unique": {
+          "name": "Genero_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Libro": {
+      "name": "Libro",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idGenero": {
+          "name": "idGenero",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idSubgenero": {
+          "name": "idSubgenero",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "idEditorial": {
+          "name": "idEditorial",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "isbn": {
+          "name": "isbn",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idColeccion": {
+          "name": "idColeccion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "coverImgPath": {
+          "name": "coverImgPath",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "anyoEscritura": {
+          "name": "anyoEscritura",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "anyoEdicion": {
+          "name": "anyoEdicion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Libro_isbn_unique": {
+          "name": "Libro_isbn_unique",
+          "columns": [
+            "isbn"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "Libro_idGenero_Genero_id_fk": {
+          "name": "Libro_idGenero_Genero_id_fk",
+          "tableFrom": "Libro",
+          "tableTo": "Genero",
+          "columnsFrom": [
+            "idGenero"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        },
+        "Libro_idSubgenero_SubGenero_id_fk": {
+          "name": "Libro_idSubgenero_SubGenero_id_fk",
+          "tableFrom": "Libro",
+          "tableTo": "SubGenero",
+          "columnsFrom": [
+            "idSubgenero"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        },
+        "Libro_idEditorial_Editorial_id_fk": {
+          "name": "Libro_idEditorial_Editorial_id_fk",
+          "tableFrom": "Libro",
+          "tableTo": "Editorial",
+          "columnsFrom": [
+            "idEditorial"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        },
+        "Libro_idColeccion_Coleccion_id_fk": {
+          "name": "Libro_idColeccion_Coleccion_id_fk",
+          "tableFrom": "Libro",
+          "tableTo": "Coleccion",
+          "columnsFrom": [
+            "idColeccion"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "LibroAutor": {
+      "name": "LibroAutor",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idLibro": {
+          "name": "idLibro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idAutor": {
+          "name": "idAutor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "LibroAutor_idLibro_Libro_id_fk": {
+          "name": "LibroAutor_idLibro_Libro_id_fk",
+          "tableFrom": "LibroAutor",
+          "tableTo": "Libro",
+          "columnsFrom": [
+            "idLibro"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "LibroAutor_idAutor_Autor_id_fk": {
+          "name": "LibroAutor_idAutor_Autor_id_fk",
+          "tableFrom": "LibroAutor",
+          "tableTo": "Autor",
+          "columnsFrom": [
+            "idAutor"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "LibroContacto": {
+      "name": "LibroContacto",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idLibro": {
+          "name": "idLibro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idContacto": {
+          "name": "idContacto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "idPropietario": {
+          "name": "idPropietario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "isDevuelto": {
+          "name": "isDevuelto",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "LibroContacto_idLibro_Libro_id_fk": {
+          "name": "LibroContacto_idLibro_Libro_id_fk",
+          "tableFrom": "LibroContacto",
+          "tableTo": "Libro",
+          "columnsFrom": [
+            "idLibro"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "LibroContacto_idContacto_Contacto_id_fk": {
+          "name": "LibroContacto_idContacto_Contacto_id_fk",
+          "tableFrom": "LibroContacto",
+          "tableTo": "Contacto",
+          "columnsFrom": [
+            "idContacto"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "LibroContacto_idPropietario_Contacto_id_fk": {
+          "name": "LibroContacto_idPropietario_Contacto_id_fk",
+          "tableFrom": "LibroContacto",
+          "tableTo": "Contacto",
+          "columnsFrom": [
+            "idPropietario"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "contacto_or_propietario_check": {
+          "name": "contacto_or_propietario_check",
+          "value": "(\"LibroContacto\".\"idContacto\" is not null and \"LibroContacto\".\"idPropietario\" is null) or (\"LibroContacto\".\"idContacto\" is null and \"LibroContacto\".\"idPropietario\" is not null)"
+        }
+      }
+    },
+    "LibroUsuario": {
+      "name": "LibroUsuario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idLibro": {
+          "name": "idLibro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idUsuario": {
+          "name": "idUsuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idEstado": {
+          "name": "idEstado",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "valoracion": {
+          "name": "valoracion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "LibroUsuario_idLibro_Libro_id_fk": {
+          "name": "LibroUsuario_idLibro_Libro_id_fk",
+          "tableFrom": "LibroUsuario",
+          "tableTo": "Libro",
+          "columnsFrom": [
+            "idLibro"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "LibroUsuario_idUsuario_Usuario_id_fk": {
+          "name": "LibroUsuario_idUsuario_Usuario_id_fk",
+          "tableFrom": "LibroUsuario",
+          "tableTo": "Usuario",
+          "columnsFrom": [
+            "idUsuario"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "LibroUsuario_idEstado_Estado_id_fk": {
+          "name": "LibroUsuario_idEstado_Estado_id_fk",
+          "tableFrom": "LibroUsuario",
+          "tableTo": "Estado",
+          "columnsFrom": [
+            "idEstado"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "rango_valoracion_check": {
+          "name": "rango_valoracion_check",
+          "value": "\"LibroUsuario\".\"valoracion\" >= 0 and \"LibroUsuario\".\"valoracion\" <= 10"
+        }
+      }
+    },
+    "LibroUsuarioEstadoHistorico": {
+      "name": "LibroUsuarioEstadoHistorico",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idLibro": {
+          "name": "idLibro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idUsuario": {
+          "name": "idUsuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idEstado": {
+          "name": "idEstado",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "LibroUsuarioEstadoHistorico_idLibro_Libro_id_fk": {
+          "name": "LibroUsuarioEstadoHistorico_idLibro_Libro_id_fk",
+          "tableFrom": "LibroUsuarioEstadoHistorico",
+          "tableTo": "Libro",
+          "columnsFrom": [
+            "idLibro"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "LibroUsuarioEstadoHistorico_idUsuario_Usuario_id_fk": {
+          "name": "LibroUsuarioEstadoHistorico_idUsuario_Usuario_id_fk",
+          "tableFrom": "LibroUsuarioEstadoHistorico",
+          "tableTo": "Usuario",
+          "columnsFrom": [
+            "idUsuario"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "LibroUsuarioEstadoHistorico_idEstado_Estado_id_fk": {
+          "name": "LibroUsuarioEstadoHistorico_idEstado_Estado_id_fk",
+          "tableFrom": "LibroUsuarioEstadoHistorico",
+          "tableTo": "Estado",
+          "columnsFrom": [
+            "idEstado"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Nota": {
+      "name": "Nota",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idUsuario": {
+          "name": "idUsuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "idLibro": {
+          "name": "idLibro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pagina": {
+          "name": "pagina",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "texto": {
+          "name": "texto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Nota_idUsuario_Usuario_id_fk": {
+          "name": "Nota_idUsuario_Usuario_id_fk",
+          "tableFrom": "Nota",
+          "tableTo": "Usuario",
+          "columnsFrom": [
+            "idUsuario"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Nota_idLibro_Libro_id_fk": {
+          "name": "Nota_idLibro_Libro_id_fk",
+          "tableFrom": "Nota",
+          "tableTo": "Libro",
+          "columnsFrom": [
+            "idLibro"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "SubGenero": {
+      "name": "SubGenero",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "SubGenero_nombre_unique": {
+          "name": "SubGenero_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Usuario": {
+      "name": "Usuario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Usuario_nombre_unique": {
+          "name": "Usuario_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
