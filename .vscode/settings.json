@@ -1,3 +1,11 @@
 {
-	"color-blocks.wrapText.enabled": false
+	"color-blocks.wrapText.enabled": false,
+	"editor.fontSize": 14,
+	"terminal.integrated.fontSize": 14,
+	"cSpell.words": ["Égloga"],
+
+	// TypesScript
+	"js/ts.tsdk.path": "./node_modules/typescript/lib",
+	"js/ts.tsdk.promptToUseWorkspaceVersion": true,
+	"js/ts.experimental.useTsgo": false
 }

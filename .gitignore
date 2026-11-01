@@ -26,3 +26,6 @@ logs
 # Data
 biblioteca.db
 *.db
+
+# Agentes de IA (contexto local - no subir al repositorio)
+.agents/

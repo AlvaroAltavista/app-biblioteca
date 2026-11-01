@@ -1,0 +1,83 @@
+@import "./fonts.css";
+
+html {
+	/* 1rem = 10px*/
+	font-size: 62.5%;
+}
+
+:root {
+	/* Colores ------------------------------- */
+	/* Brand */
+	--brand-500: #dc6464;
+	--brand-600: #b05050;
+	--brand-700: #843c3c;
+	--layout-100: #fcfaf8;
+	--layout-300: #f6f0ea;
+	--layout-500: #f0e6dc;
+	--neutral-100: #f0f0f0;
+	--neutral-800: #333333;
+
+	/* Colores semánticos -------------------- */
+	/* Contenido */
+	--contenido-primario: var(--neutral-800);
+	--contenido-primario-inverso: var(--neutral-100);
+	--contenido-brand: var(--brand-500);
+
+	/* Background */
+	--bkg-brand: var(--brand-500);
+	--bkg-link-brand: var(--brand-500);
+	--bkg-link-brand-hover: var(--brand-600);
+	--bkg-link-brand-active: var(--brand-700);
+	--bkg-link-layout: var(--layout-100);
+	--bkg-link-layout-hover: var(--layout-500);
+	--bkg-link-layout-active: var(--layout-500);
+
+	/* Tipografía ----------------------------- */
+	/* Familia */
+	--font-brand: "Avenir Next", system-ui, -apple-system, sans-serif;
+
+	/* Pesos */
+	--fw-regular: 400;
+	--fw-bold: 700;
+
+	/* Tamaños */
+	--fs-xs: 1.2rem;
+	--fs-s: 1.4rem;
+	--fs-m: 1.6rem;
+	--fs-l: 1.8rem;
+	--fs-xl: 2.4rem;
+	--fs-2xl: 3.2rem;
+
+	/* Alturas de línea */
+	--fh-low: 1.2;
+	--fh-normal: 1.5;
+	--fh-high: 1.7;
+
+	/* Espaciados */
+	--pd-xs: 0.4rem;
+	--pd-s: 0.8rem;
+	--pd-m: 1.2rem;
+	--pd-l: 1.6rem;
+	--pd-xl: 2.4rem;
+	--pd-2xl: 3.2rem;
+
+	/* Radios */
+	--rd-xs: 0.4rem;
+	--rd-s: 0.8rem;
+
+	/* Transiciones */
+	--transition-speed: 200ms;
+}
+
+/* Reset de estilos -------------------------------- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
